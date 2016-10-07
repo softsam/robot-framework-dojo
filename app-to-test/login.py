@@ -5,6 +5,7 @@ from __future__ import print_function
 import os.path
 import sys
 import tempfile
+import argparse
 
 
 DATABASE_FILE = os.path.join(tempfile.gettempdir(),
@@ -60,6 +61,16 @@ class UserDataBase(object):
                 file.write('%s\t%s\t%s\n'
                            % (user.username, user.password, user.status))
 
+    def delete_user(self, username, password):
+        try:
+            if not self._is_valid_user(username, password):
+                raise ValueError('Access Denied')
+            del self.users[username]
+        except ValueError as err:
+            return 'Delete failed: %s' % err
+        else:
+            return 'SUCCESS'
+
     def __enter__(self):
         return self
 
@@ -104,35 +115,49 @@ class User(object):
         return has_lower and has_upper and has_number
 
 
-def login(username, password):
+def login(args):
     with UserDataBase() as db:
-        print(db.login(username, password))
+        print(db.login(args.username, args.password))
 
 
-def create_user(username, password):
+def create(args):
     with UserDataBase() as db:
-        print(db.create_user(username, password))
+        print(db.create_user(args.username, args.password))
 
 
-def change_password(username, old_pwd, new_pwd):
+def change_password(args):
     with UserDataBase() as db:
-        print(db.change_password(username, old_pwd, new_pwd))
+        print(db.change_password(args.username, args.old_password, args.new_password))
 
 
-def help():
-    print('Usage: %s { create | login | change-password | help }'
-           % os.path.basename(sys.argv[0]))
+def delete(args):
+    with UserDataBase() as db:
+        print(db.delete_user(args.username, args.password))
+
+
 
 
 if __name__ == '__main__':
-    actions = {'create': create_user, 'login': login,
-               'change-password': change_password, 'help': help}
-    try:
-        action = sys.argv[1]
-    except IndexError:
-        action = 'help'
-    args = sys.argv[2:]
-    try:
-        actions[action](*args)
-    except (KeyError, TypeError):
-        help()
+    parser = argparse.ArgumentParser(add_help=True)
+    subparsers = parser.add_subparsers(title='Commands', dest='action')
+
+    subparser = subparsers.add_parser('create')
+    subparser.add_argument('username')
+    subparser.add_argument('password')
+
+    subparser = subparsers.add_parser('login')
+    subparser.add_argument('username')
+    subparser.add_argument('password')
+
+    subparser = subparsers.add_parser('change_password')
+    subparser.add_argument('username')
+    subparser.add_argument('old_password')
+    subparser.add_argument('new_password')
+
+    subparser = subparsers.add_parser('delete')
+    subparser.add_argument('username')
+    subparser.add_argument('password')
+
+    arguments = parser.parse_args()
+
+    globals()[arguments.action](arguments)
