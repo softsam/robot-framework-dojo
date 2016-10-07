@@ -99,33 +99,62 @@ Sous le répertoire **app-to-test** se trouve le fichier `login.py`. Taper `pyth
 
 ## Le déroulement
 
+### Intro
+- Pourquoi utiliser robot
+	 - inter-métier
+	 - toute techno
+- Installation des envs
 
-
- - Utilisation d'un log
+### Cours
+- Qu'est-ce qu'un test robot
+ - Format d'un fichier robot (tabs) 
+ - IDE ?
  - Execution et lecture d'un report
- - IDE?
- - *application : faire un premier test qui log*
+
+	:pencil2: ```exo: premier exo. Comment on fait? on montre ton premier exo et on demande d'un ajouter d'autre? Ou pour l'instant on ne leur fait rien rédiger et juste ils lancent le test?```
+
 - Types de test
 	- high level test
 	- data driven test
 - Keywords
 	- Library Keywords (dont les librairies builtin)
 	- User Keywords
-	- *on récupère la lib python, et on fait coder les mots clé à chacun*
+
+	:pencil2: ```on récupère ton super keyword de prompt et on leur demande de coder des tests qui l'utilise?```
+
 - Variables
 	- Au niveau d'un test
 	- En paramètre d'execution
-	- *exercice*
+
+	:pencil2: ```exercice? ou c'est suffisant d'attendre la deuxième partie?```
+
 - Organisation des tests
 	- Testsuites
 	- Setup teardown
 	- tags
-- Aller plus loin:
-	-  Créer ses propres librairies
-	-  Utiliser selenium
-	-  Integration continue
 
-	## TODO
+### Pratique:	
+- Presentation de l'application à tester
+
+	:pencil2: ```manipuler l'appli pour comprendre le fonctionnement```
+
+- Presentation de la lib Python fournie
+
+	```imprimer la liste des keyword? car pas d'IDE```
+
+- A vous de jouer
+
+	:pencil2: ```voir comment on peut fournir le squelette...```
+
+### Aller plus loin:
+
+-  Créer ses propres librairies
+-  Utiliser selenium (demo)
+-  Integration continue, parallelisme
+
+
+
+## TODO
 	[] créer un memo avec la liste des mots clé python de la lib
 	
 	[] créer l'étape avec la lib python et tous les mots clé à coder
