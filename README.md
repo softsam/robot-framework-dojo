@@ -23,15 +23,19 @@ Créer un environnement virtuel dédié à ce tutoriel, et installerle contenu d
  - Format d'un fichier robot (tabs) 
  - Utilisation d'un log
  - Execution et lecture d'un report
+ - IDE?
+ - *application : faire un premier test qui log*
 - Types de test
 	- high level test
 	- data driven test
 - Keywords
-	- Library Keywords
+	- Library Keywords (dont les librairies builtin)
 	- User Keywords
+	- *on récupère la lib python, et on fait coder les mots clé à chacun*
 - Variables
 	- Au niveau d'un test
 	- En paramètre d'execution
+	- *exercice*
 - Organisation des tests
 	- Testsuites
 	- Setup teardown
@@ -40,3 +44,8 @@ Créer un environnement virtuel dédié à ce tutoriel, et installerle contenu d
 	-  Créer ses propres librairies
 	-  Utiliser selenium
 	-  Integration continue
+
+	## TODO
+	[] créer un memo avec la liste des mots clé python de la lib
+	
+	[] créer l'étape avec la lib python et tous les mots clé à coder
