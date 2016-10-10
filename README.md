@@ -93,20 +93,29 @@ Test Something
 	Should Be Equal 10 	8
 ```
 
-Si on exécute la test suite en ajoutant l'option `--noncritical  addon_non_mandatory` on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
+
+### Critiques? Non critique? 
+
+Outre le fait de permettre le regroupement de nos tests par thématique, on peut ausi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
 
 Exercice:
 
 - Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
 
-### Critiques? Non critique? 
+### Variables
 
-Il est possible de préciser en ligne de commande quels tags désignent ou non critiques.
+- portée d'une variable
+- en ligne de commande
 
-- ajout de tags
-- exécution
--ouverture de *report.html*, filtrag avec ou sans critiques.
+### Init et clean
+
+### Organisation des tests
+
+- Une test suite
+- Organisation par arborescence
+
+###
 
 ## L'application de démo:
 
