@@ -108,7 +108,7 @@ Exercice:
 Les variables sont, comme dans tout langage très utilisée en robotframework.
 Elles peuvent avoir trois portée:
 
-- globale: leur portée est visible sur toutes les test suites. Si une test suite en modifie la valeur, cela impactera les autres. Peuvnt être déclarée en ligne de commande (cf plus bas) ou avec le mot clef `set global variable`
+- globale: leur portée est visible sur toutes les test suites. Si une test suite en modifie la valeur, cela impactera les autres. Elles peuvent être déclarées en ligne de commande (cf plus bas) ou avec le mot clef `set global variable`
 - test suite: sa durée de vie est cloisonnée à une test suite. Ces variables sont déclarées par le mot clef `set suite variable` ou par la section `*** Variables ***`:
 
 ```robotframework
@@ -117,9 +117,17 @@ ${MA_VARIABLE_1}		Toto
 ${MA_VARIABLE_2}		1
 ```
 
-- test: durée de vie cantonnée à un test
+- test: durée de vie cantonnée à un test. Elles peuvent être déclarées par le mot clef `set test variable` ou à la volée (ici on `MY_TEST_VARIABLE` vaudra `TotoTitiTata`):
 
-Les variables peuvent être déclarée en ligne de commande (très pratique pour spécifier un type de configuration) grâce à l'option `-v`ou `--variable`dans sa version longue:
+```robotframework
+*** Test Cases ***
+Some Test
+	${MY_TEST_VARIABLE}=	Concat		Toto	Titi	Tata
+```
+	
+
+
+Les variables globales peuvent être déclarées en ligne de commande (très pratique pour spécifier un type de configuration) grâce à l'option `-v`ou `--variable`dans sa version longue:
 
 ```bash
 $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
