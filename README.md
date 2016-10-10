@@ -122,7 +122,7 @@ ${MA_VARIABLE_2}		1
 ```robotframework
 *** Test Cases ***
 Some Test
-	${MY_TEST_VARIABLE}=	Concat		Toto	Titi	Tata
+	${MY_TEST_VARIABLE}=	catenate	Toto	Titi	Tata
 ```
 	
 
@@ -134,7 +134,26 @@ $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
 ```
 
 
-### Init et clean
+### Phases dinitialisation et de clôture
+
+Comme tout framework de test qui se respecte, la section `*** Settings ***` permet de déclarer:
+
+- une phase d'initialisation d'une suite de tests grâce au mot `Suite Setup`  
+- une phase de nettoyage d'une suite de tests grâce au mot `Suite Teardown`
+
+Puis, localement à un `test case`, on peut aussi y préciser une phase d'initalisation et de nettoyage au **niveau de ce test**. Par exemple:
+
+
+```robotframework
+Some Test
+	[Setup]  log to console     Initiating
+	[Teardown]  run keyword if test failed      fatal error   Cannot continue
+	should be equal     3       2
+```
+
+Ici, avant le déroulement du test, le message *Initiating* sera affiché à la console. Le test sera ensuite déroulé (et va échouer... ). En phase de *teardown*, le mot clef  `run keyword if test failed` va être déroulé. Comme sont nom l'indique, ce mot clef prend en paramétre un autre mot clef, `fatal error` et les arguments de ce mot clef, la chaîne `Cannot continue` ici. 
+
+Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre comment un test est déterminant pour les tests qui suivent.
 
 ### Organisation des tests
 
