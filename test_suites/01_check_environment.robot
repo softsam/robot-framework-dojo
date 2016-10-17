@@ -4,8 +4,8 @@ Library     DateTime
 
 *** Test Cases ***
 Application file must be present
-    Directory Should Exist  ../app-to-test
-    File Should Exist       ../app-to-test/login.py
+    Directory Should Exist  ./app-to-test
+    File Should Exist       ./app-to-test/login.py
     log     file is present
 
 Test is only valid on developer's day
