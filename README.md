@@ -122,10 +122,6 @@ Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant t
 
 Normalement, les *test cases* d'une *test suite* doivent qualifier une même fonctionnalité et **si possible** être indépendants les uns des autres.
 
-#### Gerkins est aussi possible
-
-Il est aussi possible d'écrire ses tests en suivant le style *given-when-then* rendu célèbre par l'approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
-
 ---
 
 
@@ -198,6 +194,8 @@ Editez le fichier `04_login_app_tests.robot`. Il contient des tests à compléte
 # Aller plus loin
 
 
+
+- Gerkins est aussi possible: Il est aussi possible d'écrire ses tests en suivant le style *given-when-then* rendu célèbre par l'approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
 -  Utilisez la puissance de librairie BuiltIn (`· Wait Until Keyword Succeeds`, `Run Keyword And Expect Error`, ...)
 -  Créer ses propres librairies
 -  Utiliser selenium (demo)
