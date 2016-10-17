@@ -179,6 +179,7 @@ Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (e
 
 # Aller plus loin:
 
+-  Utilisez la puissance de librairie BuiltIn (`· Wait Until Keyword Succeeds`, `Run Keyword And Expect Error`, ...)
 -  Créer ses propres librairies
 -  Utiliser selenium (demo)
 -  Integration continue, parallelisme
