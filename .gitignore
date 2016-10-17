@@ -14,3 +14,4 @@ testsuites/*generated*.robot
 generated-*/
 
 *.iml
+test_suites/zz_login_app_tests.robot
