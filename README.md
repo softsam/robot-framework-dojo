@@ -11,6 +11,7 @@ Pour suivre cet atelier, vous devez installer:
 
 
 ## Intérêt de robotframework
+### Un langage pour tous les métiers
 Robotframework permet de déclarer des suites de tests dans un langage naturel, à haut niveau sémantique (ouf ça envoie du pâté). 
 
 Robotframework est une librairie `python` mais il définit un langage totalement différent, plus simple, et accessible à tous types de métier. N'importe quelle personne ayant des notions très basiques d'informatique, capable:
@@ -21,8 +22,10 @@ Robotframework est une librairie `python` mais il définit un langage totalement
 
 est capable de développer des tests.
 
-Cela permet d'inclure dans leur rédaction les développeurs, les testeurs, mais aussi les product owners et ainsi s'approcher d'unun d'une méthodologie BDD.
+Cela permet d'inclure dans leur rédaction les développeurs, les testeurs, mais aussi les product owners et ainsi s'approcher d'une méthodologie BDD.
 
+### Capable de tester toutes vos technos
+Robotframework n'est pas lié à une techno. Ses nombreuses librairies (ainsi que le fait de pouvoir développer les votres) lui permet de piloter n'importe quel produit pilotable par un ordinateur.
 
 ## Installation des environnements
 
@@ -79,34 +82,10 @@ Mais on peut aussi implémenter ses propres keywords. Jeter un oeil au fichier `
 L'exécuter.
 
 
-### Les tags
-
-Grâce à la balise `[Tags]` il est possible de positionner des tags sur les *test cases*.
-
-Par exemple, dans le cas où nous aurions le test suivant
-
-
-```robotframework
-*** Test Cases ***
-Test Something
-	[Tags] addon_non_mandatory
-	Should Be Equal 10 	8
-```
-
-
-### Critiques? Non critique? 
-
-Outre le fait de permettre le regroupement de nos tests par thématique, on peut ausi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
-
-Exercice:
-
-- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
-- Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
-
 ### Variables
 
-Les variables sont, comme dans tout langage très utilisée en robotframework.
-Elles peuvent avoir trois portée:
+Les variables sont, comme dans tout langage très utilisées en robotframework.
+Elles peuvent avoir trois portées:
 
 - globale: leur portée est visible sur toutes les test suites. Si une test suite en modifie la valeur, cela impactera les autres. Elles peuvent être déclarées en ligne de commande (cf plus bas) ou avec le mot clef `set global variable`
 - test suite: sa durée de vie est cloisonnée à une test suite. Ces variables sont déclarées par le mot clef `set suite variable` ou par la section `*** Variables ***`:
@@ -160,7 +139,31 @@ Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre co
 - Une test suite
 - Organisation par arborescence
 
-###
+
+#### Les tags
+
+Grâce à la balise `[Tags]` il est possible de positionner des tags sur les *test cases*.
+
+Par exemple, dans le cas où nous aurions le test suivant
+
+
+```robotframework
+*** Test Cases ***
+Test Something
+	[Tags] addon_non_mandatory
+	Should Be Equal 10 	8
+```
+
+
+#### Critiques? Non critique? 
+
+Outre le fait de permettre le regroupement de nos tests par thématique, on peut aussi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
+
+Exercice:
+
+- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
+- Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
+
 
 ## L'application de démo:
 
