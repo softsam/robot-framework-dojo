@@ -109,14 +109,20 @@ Les variables globales peuvent être déclarées en ligne de commande (très pra
 $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
 ```
 
-#### Organisation des tests
+#### Comment écrire ses tests
 ### Les testsuites
 Un fichier correspond à une *testsuite*. 
 Rien est obligatoire mais il est conseillé de réunir au sein d'un même fichier des tests fonctionnellement liés (car ils pourront partager des variables, de la doc, etc...).
 
-Les tests au sein d'une testsuite seront déroulés de manière séquentiels, alors que deux testsuites pourraient très bien être lancés en parallèle.
+Les tests au sein d'une *testsuite* seront déroulés de manière séquentiele, alors que deux testsuites pourraient très bien être lancées en parallèle.
 
 Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant toute les testsuites contenues.
+
+Normalement, les *test cases* d'une *test suite* doivent qualifier une même fonctionnalité et **si possible** être indépendants les uns des autres.
+
+### Gerkins est aussi possible
+Il est aussi possible d'écrire ses tests en suivant le style *given-when-then* rendu célèbre par l'approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
+
 
 ### Phases d'initialisation et de clôture
 
