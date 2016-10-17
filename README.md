@@ -167,7 +167,7 @@ Test Something
 
 Outre le fait de permettre le regroupement de nos tests par thématique, on peut aussi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
 
-:pencil2: Exercice:
+Exercice:
 
 - Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
