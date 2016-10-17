@@ -7,7 +7,7 @@ class LoginLibrary(object):
 
     def __init__(self):
         self._sut_path = os.path.join(os.path.dirname(__file__),
-                                      '..', 'sut', 'login.py')
+                                      '..', 'app-test', 'login.py')
         self._status = ''
 
     def create_user(self, username, password):
