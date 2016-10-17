@@ -1,6 +1,9 @@
 *** Settings ***
 Library     OperatingSystem
 Library     DateTime
+Documentation    Test to check that every thing
+...              is perfectly set for this
+...              robotframework tutorial.
 
 *** Test Cases ***
 Application file must be present
