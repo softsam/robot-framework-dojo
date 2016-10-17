@@ -112,9 +112,11 @@ $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
 #### Organisation des tests
 ### Les testsuites
 Un fichier correspond à une *testsuite*. 
+Rien est obligatoire mais il est conseillé de réunir au sein d'un même fichier des tests fonctionnellement liés (car ils pourront partager des variables, de la doc, etc...).
+
+Les tests au sein d'une testsuite seront déroulés de manière séquentiels, alors que deux testsuites pourraient très bien être lancés en parallèle.
+
 Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant toute les testsuites contenues.
-conseils??
-:warning: à compléter
 
 ### Phases d'initialisation et de clôture
 
@@ -180,4 +182,9 @@ Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (e
 -  Créer ses propres librairies
 -  Utiliser selenium (demo)
 -  Integration continue, parallelisme
+
+__Quelques liens__:
+
+ - [la doc] (http://robotframework.org/robotframework/)
+ - [de très bon conseils sur la rédaction des tests] (https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
 
