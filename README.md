@@ -32,7 +32,7 @@ Télécharger [les sources de pip]https://pypi.python.org/pypi/pip#downloads), p
 `[sudo] python setup.py`
 
 ### Virtualenv
-Pour ceux qui ne souhaiteraient pas poluer leur répertoire d'installation python, installer la librarie, installer [virtualenv](https://pypi.python.org/pypi/virtualenv). Puis créer un environnement virtuel dédié à ce tutoriel.
+Pour ceux qui ne souhaiteraient pas polluer leur répertoire d'installation python, installer la librarie, installer [virtualenv](https://pypi.python.org/pypi/virtualenv). Puis créer un environnement virtuel dédié à ce tutoriel.
 Pour les autres, passer à l'étape suivante.
 
 - installation: `pip install virtualenv`
