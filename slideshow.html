@@ -450,7 +450,7 @@ Puis, localement à un `test case`, on peut aussi y préciser une phase d&#39;in
 
 ```robotframework
 Some Test
-    [Setup]  log to console     Initiating
+    [Setup]  log to console     Initializing
     [Teardown]  run keyword if test failed      fatal error   Cannot continue
     should be equal     3       2
 ```
@@ -477,7 +477,7 @@ pybot --include crazy_test my/test/directory
 ou
 pybot --exclude crazy_test my/test/directory
 ```
-##### Critiques? Non critique?
+##### Critiques? Non critiques?
 Les tags permettent aussi de spécifier la non criticité d&#39;une thématique en ajoutant l&#39;option `--noncritical`.
 
 ```shell

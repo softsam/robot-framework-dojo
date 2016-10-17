@@ -137,7 +137,7 @@ Puis, localement à un `test case`, on peut aussi y préciser une phase d'inital
 
 ```robotframework
 Some Test
-	[Setup]  log to console     Initiating
+	[Setup]  log to console     Initializing
 	[Teardown]  run keyword if test failed      fatal error   Cannot continue
 	should be equal     3       2
 ```
