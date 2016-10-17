@@ -86,8 +86,8 @@ L'exécuter.
 Les variables sont, comme dans tout langage très utilisées en robotframework.
 Elles peuvent avoir trois portées:
 
-- globale: leur portée est visible sur toutes les test suites. Si une test suite en modifie la valeur, cela impactera les autres. Elles peuvent être déclarées en ligne de commande (cf plus bas) ou avec le mot clef `set global variable`
-- test suite: sa durée de vie est cloisonnée à une test suite. Ces variables sont déclarées par le mot clef `set suite variable` ou par la section `*** Variables ***`:
+- *globale*: leur portée est visible sur toutes les test suites. Si une test suite en modifie la valeur, cela impactera les autres. Elles peuvent être déclarées en ligne de commande (cf plus bas) ou avec le mot clef `set global variable`
+- *test suite*: sa durée de vie est cloisonnée à une test suite. Ces variables sont déclarées par le mot clef `set suite variable` ou par la section `*** Variables ***`:
 
 ```robotframework
 *** Variables ***
@@ -95,7 +95,7 @@ ${MA_VARIABLE_1}		Toto
 ${MA_VARIABLE_2}		1
 ```
 
-- test: durée de vie cantonnée à un test. Elles peuvent être déclarées par le mot clef `set test variable` ou à la volée (ici on `MY_TEST_VARIABLE` vaudra `TotoTitiTata`):
+- *test*: durée de vie cantonnée à un test. Elles peuvent être déclarées par le mot clef `set test variable` ou à la volée (ici on `MY_TEST_VARIABLE` vaudra `TotoTitiTata`):
 
 ```robotframework
 *** Test Cases ***
@@ -103,14 +103,16 @@ Some Test
 	${MY_TEST_VARIABLE}=	catenate	Toto	Titi	Tata
 ```
 	
+---
+	
 Les variables globales peuvent être déclarées en ligne de commande (très pratique pour spécifier un type de configuration) grâce à l'option `-v`ou `--variable`dans sa version longue:
 
 ```bash
 $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
 ```
 
-#### Comment écrire ses tests
-### Les testsuites
+### Comment écrire ses tests
+#### Les testsuites
 Un fichier correspond à une *testsuite*. 
 Rien est obligatoire mais il est conseillé de réunir au sein d'un même fichier des tests fonctionnellement liés (car ils pourront partager des variables, de la doc, etc...).
 
@@ -120,11 +122,14 @@ Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant t
 
 Normalement, les *test cases* d'une *test suite* doivent qualifier une même fonctionnalité et **si possible** être indépendants les uns des autres.
 
-### Gerkins est aussi possible
+#### Gerkins est aussi possible
+
 Il est aussi possible d'écrire ses tests en suivant le style *given-when-then* rendu célèbre par l'approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
 
+---
 
-### Phases d'initialisation et de clôture
+
+#### Phases d'initialisation et de clôture
 
 Comme tout framework de test qui se respecte, la section `*** Settings ***` permet de déclarer:
 
@@ -144,6 +149,8 @@ Some Test
 Ici, avant le déroulement du test, le message *Initiating* sera affiché à la console. Le test sera ensuite déroulé (et va échouer... ). En phase de *teardown*, le mot clef  `run keyword if test failed` va être déroulé. Comme sont nom l'indique, ce mot clef prend en paramétre un autre mot clef, `fatal error` et les arguments de ce mot clef, la chaîne `Cannot continue` ici. 
 
 Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre comment un test est déterminant pour les tests qui suivent.
+
+---
 
 #### Les tags
 
@@ -169,29 +176,38 @@ Outre le fait de permettre le regroupement de nos tests par thématique, on peut
 - Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
 
+
 ## En pratique
-
-### L'application de démo:
-
-Sous le répertoire **app-to-test** se trouve le fichier `login.py`. Taper `python app-to-test/login.py -h` et familiarisez vous avec.
-
-### La librairie Python fournie
-
-Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (en python ou java). Pour cette exercice nous vous fournisson une librairies python (dans le répertoire lib) définissant quelques mots-clés vous permettant de manipuler l'application de démo.
 
 ### A vous de jouer
 
-Editez le fichier `test_suites/04_login_app_tests.robot`. Vous y trouverez une liste de tests dont le contenu est à rédiger. 
+#### L'application de démo
 
-# Aller plus loin:
+Sous le répertoire **app-to-test** se trouve le fichier `login.py`. Taper `python app-to-test/login.py -h` et familiarisez vous avec.
+
+#### La librairie Python fournie
+
+Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (en python ou java). Pour cette exercice nous vous fournisson une librairies python (dans le répertoire lib) définissant quelques mots-clés vous permettant de manipuler l'application de démo.
+
+#### Au boulot!
+
+Editez le fichier `04_login_app_tests.robot`. Il contient des tests à compléter afin de valider le fonctionnement de l'application `login.py`
+
+
+
+# Aller plus loin
+
 
 -  Utilisez la puissance de librairie BuiltIn (`· Wait Until Keyword Succeeds`, `Run Keyword And Expect Error`, ...)
 -  Créer ses propres librairies
 -  Utiliser selenium (demo)
 -  Integration continue, parallelisme
 
-__Quelques liens__:
 
- - [la doc] (http://robotframework.org/robotframework/)
- - [de très bon conseils sur la rédaction des tests] (https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
+# Merci!
+
+Quelques liens pour la route:
+
+- [la doc] (http://robotframework.org/robotframework/)
+- [de très bon conseils sur la rédaction des tests] (https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
 
