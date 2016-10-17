@@ -437,9 +437,6 @@ Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant t
 
 Normalement, les *test cases* d&#39;une *test suite* doivent qualifier une même fonctionnalité et **si possible** être indépendants les uns des autres.
 
-#### Gerkins est aussi possible
-Il est aussi possible d&#39;écrire ses tests en suivant le style *given-when-then* rendu célèbre par l&#39;approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
-
 
 ---
 #### Phases d'initialisation et de clôture
@@ -477,7 +474,7 @@ Test Something
 ##### Critiques? Non critique?
 Outre le fait de permettre le regroupement de nos tests par thématique, on peut aussi spécifier la non criticité d&#39;une thématique en ajoutant l&#39;option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
 
-:pencil2: Exercice:
+Exercice:
 
 
 - Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l&#39;humeur et  la compagnie non critiques
@@ -506,6 +503,7 @@ class: center, middle, main-title
 
 # Aller plus loin
 
+- Gerkins est aussi possible: Il est aussi possible d&#39;écrire ses tests en suivant le style *given-when-then* rendu célèbre par l&#39;approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
 - Utilisez la puissance de librairie BuiltIn (`· Wait Until Keyword Succeeds`, `Run Keyword And Expect Error`, ...)
 - Créer ses propres librairies
 - Utiliser selenium (demo)
