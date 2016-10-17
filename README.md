@@ -181,7 +181,7 @@ Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (e
 
 ### A vous de jouer
 
-	:pencil2: ```voir comment on peut fournir le squelette...```
+Editez le fichier `test_suites/04_login_app_tests.robot`. Vous y trouverez une liste de tests dont le contenu est à rédiger. 
 
 # Aller plus loin:
 
