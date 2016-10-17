@@ -73,7 +73,7 @@ Les keywords sont proposés par les librairies. Sans rien importer, on n'a que l
 
 Et d'autres encore installable d'un petit coup de `pip`...
 
-Plus de détails [ici](http://robotframework.org/robotframework/#user-guide)
+Plus de détails [ici](http://robotframework.org/#test-libraries)
  
 
 Mais on peut aussi implémenter ses propres keywords. Jeter un oeil au fichier `02_keyword.robot`. On y définit dans la section `***Keywords***` le *keyword* `Prompt User` qui prend un argument et renvoie la réponse de l'utilisateur.
@@ -150,26 +150,36 @@ Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre co
 
 #### Les tags
 
-Grâce à la balise `[Tags]` il est possible de positionner des tags sur les *test cases*.
-
-Par exemple, dans le cas où nous aurions le test suivant
-
+Grâce à la balise `[Tags]` il est possible de positionner des tags sur les *test cases*, ce qui permet de naviguer plus facilement dans les rapports de test.
 
 ```robotframework
 *** Test Cases ***
 Test Something
-	[Tags] addon_non_mandatory
+	[Tags] crazy_test
 	Should Be Equal 10 	8
 ```
 
+##### Filtrer par tags
+Si vous souhaitez lancer uniquement certains tests (ou au contraire les filtrer) en vous basant sur les tags vous pouvez utiliser la commande: 
 
-##### Critiques? Non critique? 
+```shell
+pybot --include crazy_test my/test/directory
+ou
+pybot --exclude crazy_test my/test/directory
+```
 
-Outre le fait de permettre le regroupement de nos tests par thématique, on peut aussi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
+##### Critiques? Non critiques? 
 
-Exercice:
+Les tags permettent aussi de spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`.
 
-- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
+```shell
+pybot --noncritical my_tag my/test/directory
+```
+---
+
+__Exercice__:
+
+- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et la compagnie non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
 
 
