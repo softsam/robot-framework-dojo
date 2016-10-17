@@ -1,17 +1,14 @@
 # Dojo robotframework
 
-*Le but de ce repository est une découverte de l'outil robot framwork*
-
-## Prérequis
+*Le but de ce repository est une découverte de l'outil robot framwork
 Pour suivre cet atelier, vous devez installer:
-
-- [python 2.7](https://www.python.org/downloads/)
-- [pip](#pip)
-- [virtualenv](https://pypi.python.org/pypi/virtualenv)
+[python 2.7](https://www.python.org/downloads/) +
+[pip](#pip) + [virtualenv](https://pypi.python.org/pypi/virtualenv)*
 
 
-## Intérêt de robotframework
-### Un langage pour tous les métiers
+## Intro
+### Intérêt de robotframework
+#### Un langage pour tous les métiers
 Robotframework permet de déclarer des suites de tests dans un langage naturel, à haut niveau sémantique (ouf ça envoie du pâté). 
 
 Robotframework est une librairie `python` mais il définit un langage totalement différent, plus simple, et accessible à tous types de métier. N'importe quelle personne ayant des notions très basiques d'informatique, capable:
@@ -24,17 +21,17 @@ est capable de développer des tests.
 
 Cela permet d'inclure dans leur rédaction les développeurs, les testeurs, mais aussi les product owners et ainsi s'approcher d'une méthodologie BDD.
 
-### Capable de tester toutes vos technos
+#### Capable de tester toutes vos technos
 Robotframework n'est pas lié à une techno. Ses nombreuses librairies (ainsi que le fait de pouvoir développer les votres) lui permet de piloter n'importe quel produit pilotable par un ordinateur.
 
-## Installation des environnements
+### Installation des environnements
 
-### Pip
+#### Pip
 
 Télécharger [les sources de pip]https://pypi.python.org/pypi/pip#downloads), puis exécuter le fichier `setup.py`:
 `[sudo] python setup.py`
 
-### Virtualenv
+#### Virtualenv
 Pour ceux qui ne souhaiteraient pas polluer leur répertoire d'installation python, installer la librarie, installer [virtualenv](https://pypi.python.org/pypi/virtualenv). Puis créer un environnement virtuel dédié à ce tutoriel.
 Pour les autres, passer à l'étape suivante.
 
@@ -42,13 +39,15 @@ Pour les autres, passer à l'étape suivante.
  -créer un environnement virtuel (dans le répertoire où on veut que l'environnement virtual soit créé): `virtualenv DojoRobotframework`
 - chargement: `source  DojoRobotframework/bin/activate`
 
-### Installation des libraries
+#### Installation des libraries
 
 Taper la commande (dans l'environnement virtuel pour ceux qui en ont un): `pip install -r requirements.txt`
 
-## Structure des fichiers de test
+## Un peu de théorie
 
-### Le premier, on s'en souvient toujours, même si c'est pas génial
+### Structure des fichiers de test
+
+#### Le premier, on s'en souvient toujours, même si c'est pas génial
 Dans le répertoire **test_suites** se trouve le fichier `01_check_environment.robot`. Ce fichier définit deux tests cases dans la section `*** Test Cases ***`. Chaque *test case* est une succession d'expression robotframework visant à charger une donnée, la vérifier.
 
 **En bref**: ce fichier comporte :
@@ -58,7 +57,7 @@ Dans le répertoire **test_suites** se trouve le fichier `01_check_environment.r
 
 Exécuter le avec la commande: `pybot test_suites/01_check_environment.robot`
 
-### Les logs générés
+#### Les logs générés
 
 On voit en fin de test que les chaque test case est marqué d'un `SUCCESS`ou `FAIL`. En outre robotframework génère trois fichiers:
 - output.xml
@@ -104,16 +103,20 @@ Some Test
 	${MY_TEST_VARIABLE}=	catenate	Toto	Titi	Tata
 ```
 	
-
-
 Les variables globales peuvent être déclarées en ligne de commande (très pratique pour spécifier un type de configuration) grâce à l'option `-v`ou `--variable`dans sa version longue:
 
 ```bash
 $> pybot -v MA_VARIABLE_1:Toto --variable MA_VARIABLE_2:1 testsuite_directory/
 ```
 
+#### Organisation des tests
+### Les testsuites
+Un fichier correspond à une *testsuite*. 
+Les campagnes de tests peuvent aussi être lancées sur des dossiers, incluant toute les testsuites contenues.
+conseils??
+:warning: à compléter
 
-### Phases dinitialisation et de clôture
+### Phases d'initialisation et de clôture
 
 Comme tout framework de test qui se respecte, la section `*** Settings ***` permet de déclarer:
 
@@ -134,12 +137,6 @@ Ici, avant le déroulement du test, le message *Initiating* sera affiché à la 
 
 Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre comment un test est déterminant pour les tests qui suivent.
 
-### Organisation des tests
-
-- Une test suite
-- Organisation par arborescence
-
-
 #### Les tags
 
 Grâce à la balise `[Tags]` il est possible de positionner des tags sur les *test cases*.
@@ -155,80 +152,32 @@ Test Something
 ```
 
 
-#### Critiques? Non critique? 
+##### Critiques? Non critique? 
 
 Outre le fait de permettre le regroupement de nos tests par thématique, on peut aussi spécifier la non criticité d'une thématique en ajoutant l'option `--noncritical`. Dans notre cas, si on ajoute  `--noncritical  addon_non_mandatory`, on spécifie que **tous** les tests portant le tag `addon_non_mandatory` ne sont pas critiques.
 
-Exercice:
+:pencil2: Exercice:
 
 - Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et  la compagnie non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
 
+## En pratique
 
-## L'application de démo:
+### L'application de démo:
 
 Sous le répertoire **app-to-test** se trouve le fichier `login.py`. Taper `python app-to-test/login.py -h` et familiarisez vous avec.
 
+### La librairie Python fournie
 
+Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (en python ou java). Pour cette exercice nous vous fournisson une librairies python (dans le répertoire lib) définissant quelques mots-clés vous permettant de manipuler l'application de démo.
 
-## Le déroulement
-
-### Intro
-- Pourquoi utiliser robot
-	 - inter-métier
-	 - toute techno
-- Installation des envs
-
-### Cours
-- Qu'est-ce qu'un test robot
- - Format d'un fichier robot (tabs) 
- - IDE ?
- - Execution et lecture d'un report
-
-	:pencil2: ```exo: premier exo. Comment on fait? on montre ton premier exo et on demande d'un ajouter d'autre? Ou pour l'instant on ne leur fait rien rédiger et juste ils lancent le test?```
-
-- Types de test
-	- high level test
-	- data driven test
-- Keywords
-	- Library Keywords (dont les librairies builtin)
-	- User Keywords
-
-	:pencil2: ```on récupère ton super keyword de prompt et on leur demande de coder des tests qui l'utilise?```
-
-- Variables
-	- Au niveau d'un test
-	- En paramètre d'execution
-
-	:pencil2: ```exercice? ou c'est suffisant d'attendre la deuxième partie?```
-
-- Organisation des tests
-	- Testsuites
-	- Setup teardown
-	- tags
-
-### Pratique:	
-- Presentation de l'application à tester
-
-	:pencil2: ```manipuler l'appli pour comprendre le fonctionnement```
-
-- Presentation de la lib Python fournie
-
-	```imprimer la liste des keyword? car pas d'IDE```
-
-- A vous de jouer
+### A vous de jouer
 
 	:pencil2: ```voir comment on peut fournir le squelette...```
 
-### Aller plus loin:
+# Aller plus loin:
 
 -  Créer ses propres librairies
 -  Utiliser selenium (demo)
 -  Integration continue, parallelisme
 
-
-
-## TODO
-	[] créer un memo avec la liste des mots clé python de la lib
-	
-	[] créer l'étape avec la lib python et tous les mots clé à coder
