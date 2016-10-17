@@ -28,7 +28,7 @@ Robotframework n'est pas lié à une techno. Ses nombreuses librairies (ainsi qu
 
 #### Pip
 
-Télécharger [les sources de pip]https://pypi.python.org/pypi/pip#downloads), puis exécuter le fichier `setup.py`:
+Télécharger [les sources de pip](https://pypi.python.org/pypi/pip#downloads), puis exécuter le fichier `setup.py`:
 `[sudo] python setup.py`
 
 #### Virtualenv
@@ -36,7 +36,7 @@ Pour ceux qui ne souhaiteraient pas polluer leur répertoire d'installation pyth
 Pour les autres, passer à l'étape suivante.
 
 - installation: `pip install virtualenv`
- -créer un environnement virtuel (dans le répertoire où on veut que l'environnement virtual soit créé): `virtualenv DojoRobotframework`
+- créer un environnement virtuel (dans le répertoire où on veut que l'environnement virtual soit créé): `virtualenv DojoRobotframework`
 - chargement: `source  DojoRobotframework/bin/activate`
 
 #### Installation des libraries
@@ -208,6 +208,6 @@ Editez le fichier `04_login_app_tests.robot`. Il contient des tests à compléte
 
 Quelques liens pour la route:
 
-- [la doc] (http://robotframework.org/robotframework/)
-- [de très bon conseils sur la rédaction des tests] (https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
+- [la doc](http://robotframework.org/robotframework/)
+- [de très bon conseils sur la rédaction des tests](https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
 
