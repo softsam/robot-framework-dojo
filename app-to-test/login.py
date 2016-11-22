@@ -3,87 +3,81 @@
 from __future__ import print_function
 
 import os.path
-import sys
+import json
 import tempfile
 import argparse
 
-
 DATABASE_FILE = os.path.join(tempfile.gettempdir(),
-                             'robotframework-quickstart-db.txt')
+                             'robotframework-quickstart-db.json')
 
 
 class UserDataBase(object):
+    SUCCESS = 'SUCCESS'
 
     def __init__(self, db_file=DATABASE_FILE):
-        self.users = self._read_users(db_file)
         self.db_file = db_file
-
-    def _read_users(self, path):
-        users = {}
-        if os.path.isfile(path):
-            with open(path) as file:
-                for row in file.readlines():
-                    user = User(*row.rstrip('\r\n').split('\t'))
-                    users[user.username] = user
-        return users
+        self.users = dict()
 
     def create_user(self, username, password):
         try:
-            user = User(username, password)
+            if username not in self.users:
+                user = User(username, password)
+                self.users[user.username] = user
+                return UserDataBase.SUCCESS
+            else:
+                raise ValueError('User already exists')
         except ValueError as err:
             return 'Creating user failed: %s' % err
-        self.users[user.username] = user
-        return 'SUCCESS'
 
-    def login(self, username, password):
-        if self._is_valid_user(username, password):
-            self.users[username].status = 'Active'
-            return 'Logged In'
-        return 'Access Denied'
-
-    def _is_valid_user(self, username, password):
-        return (username in self.users and
-                self.users[username].password == password)
+    def check_credentials(self, username, password):
+        if username in self.users and self.users[username].password == password:
+            return UserDataBase.SUCCESS
+        else:
+            return 'Access Denied'
 
     def change_password(self, username, old_pwd, new_pwd):
         try:
-            if not self._is_valid_user(username, old_pwd):
+            if self.check_credentials(username, old_pwd) == UserDataBase.SUCCESS:
                 raise ValueError('Access Denied')
             self.users[username].password = new_pwd
         except ValueError as err:
             return 'Changing password failed: %s' % err
         else:
-            return 'SUCCESS'
-
-    def save(self):
-        with open(self.db_file, 'w') as file:
-            for user in self.users.values():
-                file.write('%s\t%s\t%s\n'
-                           % (user.username, user.password, user.status))
+            return UserDataBase.SUCCESS
 
     def delete_user(self, username, password):
         try:
-            if not self._is_valid_user(username, password):
+            if self.check_credentials(username, password) == UserDataBase.SUCCESS:
                 raise ValueError('Access Denied')
-            del self.users[username]
+            else:
+                del self.users[username]
+                return UserDataBase.SUCCESS
         except ValueError as err:
             return 'Delete failed: %s' % err
-        else:
-            return 'SUCCESS'
 
     def __enter__(self):
+        if os.path.isfile(self.db_file):
+            with open(self.db_file) as user_file:
+                self.users.update({row_user['username']: User.from_json(row_user) for row_user in json.load(user_file)})
         return self
 
     def __exit__(self, *exc_info):
-        self.save()
+        with open(self.db_file, 'w') as user_file:
+            json.dump(map(User.to_json, self.users.values()), user_file)
 
 
 class User(object):
+    @staticmethod
+    def to_json(user):
+        return dict(username=user.username, password=user.password)
 
-    def __init__(self, username, password, status='Inactive'):
+    @staticmethod
+    def from_json(row_user):
+        return User(row_user['username'], row_user['password'])
+
+    def __init__(self, username, password):
         self.username = username
-        self.password = password
-        self.status = status
+        self._password = password
 
     @property
     def password(self):
@@ -91,17 +85,19 @@ class User(object):
 
     @password.setter
     def password(self, password):
-        self._validate_password(password)
+        User._validate_password(password)
         self._password = password
 
-    def _validate_password(self, password):
+    @staticmethod
+    def _validate_password(password):
         if not (7 <= len(password) <= 12):
             raise ValueError('Password must be 7-12 characters long')
-        if not self._validate_password_chars(password):
+        if not User._validate_password_chars(password):
             raise ValueError('Password must be a combination of lowercase '
                              'and uppercase letters and numbers')
 
-    def _validate_password_chars(self, password):
+    @staticmethod
+    def _validate_password_chars(password):
         has_lower = has_upper = has_number = False
         for char in password:
             if char.islower():
@@ -117,7 +113,7 @@ class User(object):
 
 def login(args):
     with UserDataBase() as db:
-        print(db.login(args.username, args.password))
+        print(db.check_credentials(args.username, args.password))
 
 
 def create(args):
@@ -133,8 +129,6 @@ def change_password(args):
 def delete(args):
     with UserDataBase() as db:
         print(db.delete_user(args.username, args.password))
-
-
 
 
 if __name__ == '__main__':
