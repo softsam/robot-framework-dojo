@@ -5,19 +5,20 @@ Suite Setup       Clear Login Database
 Test Teardown     Clear Login Database
 
 *** Variables ***
-${DATABASE FILE}          ${TEMPDIR}${/}robotframework-quickstart-db.txt
-${PWD INVALID LENGTH}     Creating user failed: Password must be 7-12 characters long
-${PWD INVALID CONTENT}    Creating user failed: Password must be a combination of lowercase and uppercase letters and numbers
+${DATABASE_FILE}          ${TEMPDIR}${/}robotframework-quickstart-db.json
+${PWD_INVALID_LENGTH}     Creating user failed: Password must be 7-12 characters long
+${PWD_INVALID_CONTENT}    Creating user failed: Password must be a combination of lowercase and uppercase letters and numbers
 
 
 *** Keywords ***
 Clear login database
-
+    Log To Console    Implement me
 
 
 *** Test Cases ***
 Creating user with password too long should fail
-    FAIL  implement me
+    Create User     toto    pasword123456
+    status should be  ${PWD_INVALID_LENGTH}
 
 Creating user with invalid password should fail
     FAIL  implement me
