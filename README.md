@@ -200,6 +200,23 @@ Nous l'avons évoqué, RobotFramework permet de créer ses propres librairies (e
 Editez le fichier `04_login_app_tests.robot`. Il contient des tests à compléter afin de valider le fonctionnement de l'application `login.py`
 
 
+### Selenium
+
+#### Présentation
+
+Selenium est une librairie permettant de manipuler votre navigateur. Elle est portée en *python* et est exposée en tant que *librairie robotframework*. *Encore des mots, toujours des mots* mais pas les mêmes mots!
+
+
+#### L'application à tester
+Ouvrir un navigateur dans le même environnement sous le répertoire **app-to-test**:
+
+`python webapp.py`
+
+Cela va démarrer une webapplication écoutant sur l'adresse locale le port 5000.
+
+#### Au boulot
+Regarder et implémenter la test suite `05_selenium.robot`.
+
 
 # Aller plus loin
 
@@ -208,7 +225,6 @@ Editez le fichier `04_login_app_tests.robot`. Il contient des tests à compléte
 - Gerkins est aussi possible: Il est aussi possible d'écrire ses tests en suivant le style *given-when-then* rendu célèbre par l'approche [behavior driven development](http://en.wikipedia.org/wiki/Behavior_Driven_Development). Jetez un oeil au fichier `03_data_driven_test`.
 -  Utilisez la puissance de librairie BuiltIn (`· Wait Until Keyword Succeeds`, `Run Keyword And Expect Error`, ...)
 -  Créer ses propres librairies
--  Utiliser selenium (demo)
 -  Integration continue, parallelisme
 
 

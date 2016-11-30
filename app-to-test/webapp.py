@@ -1,17 +1,22 @@
 import base64
 import logging
+import time
 from login import UserDataBase
-from flask import Flask, request, redirect, url_for, render_template, make_response, session
+from flask import Flask, request, redirect, url_for, render_template, session
 from functools import wraps
 
-opened_database = None
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 logger = logging.getLogger(__name__)
 
 
+def invoke_database(action):
+    with UserDataBase() as db:
+        action(db)
+
+
 def check_auth(username, password):
-    global opened_database
-    return opened_database.check_credentials(username, password) == UserDataBase.SUCCESS
+    with UserDataBase() as db:
+        return db.check_credentials(username, password) == UserDataBase.SUCCESS
 
 
 def authenticate():
@@ -73,17 +78,17 @@ def signin():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     logger.debug('signup')
-    global opened_database
     if request.method == 'GET':
         return render_template('signup.html')
     else:  # a POST because others are not allowed
         username = request.form['username']
         password = request.form['password']
-        create_status = opened_database.create_user(username, password)
-        if create_status == UserDataBase.SUCCESS:
-            return _redirect_home_with_credentials(username, password)
-        else:
-            return render_template('signup.html', error=create_status)
+        with UserDataBase() as db:
+            create_status = db.create_user(username, password)
+            if create_status == UserDataBase.SUCCESS:
+                return _redirect_home_with_credentials(username, password)
+            else:
+                return render_template('signup.html', error=create_status)
 
 
 @app.route("/signout", methods=['GET', 'POST'])
@@ -91,10 +96,9 @@ def signout():
     logger.debug('signout')
     if 'Authorization' in session:
         session.pop('Authorization')
+    time.sleep(1)
     return _render_login(error='Logged out')
 
 
 if __name__ == "__main__":
-    with UserDataBase() as db:
-        opened_database = db
-        app.run()
+    app.run()

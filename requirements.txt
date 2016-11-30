@@ -1,2 +1,4 @@
 robotframework==3.0
 Flask==0.11.1
+robotframework-pabot==0.31
+robotframework-selenium2library==1.8.0
