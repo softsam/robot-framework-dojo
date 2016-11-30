@@ -1,6 +1,8 @@
 # Dojo robotframework
 
 *Le but de ce dojo est une découverte de l'outil robot framework
+Il est inspiré du [projet suivant](https://github.com/robotframework/QuickStartGuide/).
+ 
 Pour suivre cet atelier, vous devez installer:
 [python 2.7](https://www.python.org/downloads/) +
 [pip](#pip) + [virtualenv](https://pypi.python.org/pypi/virtualenv)*
