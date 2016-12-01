@@ -11,11 +11,11 @@ ${DATABASE_FILE}          ${TEMPDIR}${/}robotframework-quickstart-db.json
 
 *** Keywords ***
 Start My Browser
-    Create WebDriver  PhantomJS
+    # Create WebDriver  PhantomJS
     # Either run
     # Create WebDriver  PhantomJS
     # or
-    # Create WebDriver  Firefox
+    Create WebDriver  Firefox
     # or
     # Open browser  about:  chrome
 
@@ -55,4 +55,4 @@ Signout should work
     [Setup]  Create User     toto    Toto1234
     Go To       http://localhost:5000
     # signin , signout, on devrait etre sur la page de signout
-
+    Fail    Implement me

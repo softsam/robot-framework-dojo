@@ -37,7 +37,7 @@ class UserDataBase(object):
 
     def change_password(self, username, old_pwd, new_pwd):
         try:
-            if self.check_credentials(username, old_pwd) == UserDataBase.SUCCESS:
+            if self.check_credentials(username, old_pwd) != UserDataBase.SUCCESS:
                 raise ValueError('Access Denied')
             self.users[username].password = new_pwd
         except ValueError as err:
@@ -47,7 +47,7 @@ class UserDataBase(object):
 
     def delete_user(self, username, password):
         try:
-            if self.check_credentials(username, password) == UserDataBase.SUCCESS:
+            if self.check_credentials(username, password) != UserDataBase.SUCCESS:
                 raise ValueError('Access Denied')
             else:
                 del self.users[username]

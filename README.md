@@ -146,7 +146,7 @@ Some Test
 
 Ici, avant le déroulement du test, le message *Initiating* sera affiché à la console. Le test sera ensuite déroulé (et va échouer... ). En phase de *teardown*, le mot clef  `run keyword if test failed` va être déroulé. Comme sont nom l'indique, ce mot clef prend en paramétre un autre mot clef, `fatal error` et les arguments de ce mot clef, la chaîne `Cannot continue` ici. 
 
-Petite parenthèse, `fatal error` interrompt la suite en cours. Ici on montre comment un test est déterminant pour les tests qui suivent.
+Petite parenthèse, `fatal error` fait échouer tous les tests suivants. Ici on montre comment un test est déterminant pour les tests qui suivent.
 
 ---
 
@@ -181,7 +181,7 @@ pybot --noncritical my_tag my/test/directory
 
 __Exercice__:
 
-- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et la compagnie non critiques
+- Ajouter des tags sur  `02_keyword.robot` de façon à rendre les tests sur l'humeur et l'entreprise non critiques
 - Exécuter et constater que le fichier **report.html** filtre bien les tests spécifiés. 
 
 
