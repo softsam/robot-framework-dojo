@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}
+    Signin
+{% endblock %}
+{% block content %}
+  <h1>SignIn</h1>
+  <form action="/signin" method="POST">
+      {% if error %}
+      <div>
+          <span class="error">{{ error }}</span>
+      </div>
+      {% endif %}
+      <div>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username"/>
+      </div>
+      <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password"/>
+      </div>
+      <input type="submit" value="Log In"/>
+  </form>
+    <a href="/signup" >No account?</a>
+{% endblock %}
